@@ -1,0 +1,13 @@
+Account Number: 78508843
+Reservation Number: 0171334695
+Physical Address: addre
+Mailing Address: 
+Start Date: Wed Aug 09 00:00:00 EAT 2023
+Number of Nights: 6
+Number of Beds: 6
+Number of Bedrooms: 6
+Number of Bathrooms: 6
+Lodging Size: 6
+Price: $170.0
+Status: DRAFT
+Full Kitchen: true

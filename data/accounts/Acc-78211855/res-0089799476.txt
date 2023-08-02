@@ -1,0 +1,13 @@
+Account Number: 78211855
+Reservation Number: 0089799476
+Physical Address: test1
+Mailing Address: test1
+Start Date: Sun Jul 30 00:00:00 EDT 2023
+Number of Nights: 1
+Number of Beds: 1
+Number of Bedrooms: 1
+Number of Bathrooms: 1
+Lodging Size: 999
+Price: $160.0
+Status: CANCELLED
+Number of Floors: 1
