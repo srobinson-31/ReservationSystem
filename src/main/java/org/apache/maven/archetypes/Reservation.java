@@ -4,7 +4,7 @@ import java.util.Date;
 
 public abstract class Reservation {
     private final String accountNumber;
-    private final String reservationNumber;
+    private String reservationNumber;
     private String lodgingPhysicalAddress;
     private final String lodgingMailingAddress;
     private final Date startDate;
@@ -118,4 +118,16 @@ public abstract class Reservation {
                 "\nPrice: $" + price +
                 "\nStatus: " + status;
     }
+        public void setReservationNumber(String newReservationNumber) {
+            if (newReservationNumber == null || newReservationNumber.isEmpty()) {
+                throw new IllegalArgumentException("Reservation number cannot be null or empty.");
+            }
+
+            // Extract the reservation number without the prefix (remove any prefix)
+            String reservationNumberWithoutPrefix = newReservationNumber.replaceAll("[^0-9]", "");
+
+            // Append the new prefix to the reservation number
+            this.reservationNumber = newReservationNumber.charAt(0) + reservationNumberWithoutPrefix.substring(1);
+        }
 }
+

@@ -1,0 +1,13 @@
+Account Number: 69879803
+Reservation Number: C94357397
+Physical Address: test2
+Mailing Address: test2
+Start Date: Sat Aug 12 00:00:00 EDT 2023
+Number of Nights: 2
+Number of Beds: 3
+Number of Bedrooms: 4
+Number of Bathrooms: 5
+Lodging Size: 6789
+Price: $160.0
+Status: CANCELLED
+Full Kitchen: false

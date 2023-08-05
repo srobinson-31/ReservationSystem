@@ -1,0 +1,13 @@
+Account Number: 69879803
+Reservation Number: H50901874
+Physical Address: tes1
+Mailing Address: test1
+Start Date: Thu Aug 10 00:00:00 EDT 2023
+Number of Nights: 1
+Number of Beds: 2
+Number of Bedrooms: 3
+Number of Bathrooms: 4
+Lodging Size: 5678
+Price: $195.0
+Status: DRAFT
+Kitchenette: true

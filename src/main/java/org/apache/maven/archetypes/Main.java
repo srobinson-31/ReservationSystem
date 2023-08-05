@@ -1,12 +1,11 @@
 package org.apache.maven.archetypes;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,8 +16,8 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Manager manager = new Manager();
 
-    
-     /**
+
+    /**
      * The entry point of the program.
      *
      * @param args The command-line arguments.
@@ -30,11 +29,12 @@ public class Main {
             System.out.println("========== Main Menu ==========");
             System.out.println("1. Create Account");
             System.out.println("2. View Account Information");
-            System.out.println("3. Create Reservation");
-            System.out.println("4. Update Account");
-            System.out.println("5. Update Reservation");
-            System.out.println("6. Cancel Reservation");
-            System.out.println("7. Exit");
+            System.out.println("3. All reservations for Account Information");
+            System.out.println("4. Create Reservation");
+            System.out.println("5. Update Account");
+            System.out.println("6. Update Reservation");
+            System.out.println("7. Cancel Reservation");
+            System.out.println("8. Exit");
             System.out.println("===============================");
 
             int choice = getChoice();
@@ -42,16 +42,17 @@ public class Main {
             switch (choice) {
                 case 1 -> createAccount();
                 case 2 -> viewAccountInformation();
-                case 3 -> createReservation();
-                case 4 -> updateAccount();
-                case 5 -> updateReservation();
-                case 6 -> cancelReservation();
-                case 7 -> exit = true;
+                case 3 -> viewAllReservationsForAccount();
+                case 4 -> createReservation();
+                case 5 -> updateAccount();
+                case 6 -> updateReservation();
+                case 7 -> cancelReservation();
+                case 8 -> exit = true;
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
-    
+
     /**
      * Reads and returns the user's choice from the console.
      *
@@ -141,7 +142,40 @@ public class Main {
         }
     }
 
-   
+    private static void viewAllReservationsForAccount() {
+        System.out.println("========== View All Reservations for Account ==========");
+        System.out.print("Enter account number: ");
+        String accountNumber = scanner.next();
+
+        // Check if the account folder exists
+        String accountDirectoryPath = "data/accounts/Acc-" + accountNumber;
+        if (!Files.exists(Path.of(accountDirectoryPath))) {
+            System.out.println("Account not found.");
+            return;
+        }
+
+        Manager manager = new Manager();
+        List<Reservation> reservations = manager.getAllReservationsForAccount(accountNumber);
+
+        if (reservations.isEmpty()) {
+            System.out.println("No reservations found for the account.");
+        } else {
+            System.out.println("Reservations for Account: " + accountNumber);
+            for (Reservation reservation : reservations) {
+                // Load the reservation data from the file and print it directly, including the price
+                String reservationNumber = reservation.getReservationNumber();
+                String reservationFilePath = "data/accounts/Acc-" + accountNumber + "/res-" + reservationNumber + ".txt";
+                try {
+                    String reservationData = Files.readString(Path.of(reservationFilePath));
+                    System.out.println(reservationData);
+                    System.out.println("==============");
+                } catch (IOException e) {
+                    System.out.println("Failed to read reservation data: " + e.getMessage());
+                }
+            }
+        }
+    }
+
     private static void createReservation() {
         System.out.println("========== Create Reservation ==========");
         System.out.print("Enter account number: ");
@@ -162,10 +196,6 @@ public class Main {
 
         Account account = manager.getAccount(accountNumber);
         if (account != null) {
-            // Generate a random 10-digit reservation number
-            Random random = new Random();
-            String reservationNumber = String.format("%010d", random.nextInt(1000000000));
-
             System.out.print("Enter lodging physical address: ");
             String lodgingPhysicalAddress = scanner.nextLine();
 
@@ -194,6 +224,23 @@ public class Main {
 
                 System.out.print("Enter reservation type (1. Hotel, 2. Cabin, 3. House): ");
                 int reservationType = scanner.nextInt();
+
+                // Generate a random 8-digit reservation number prefix based on the reservation type
+                String reservationNumberPrefix;
+                switch (reservationType) {
+                    case 1 -> reservationNumberPrefix = "H"; // Hotel
+                    case 2 -> reservationNumberPrefix = "C"; // Cabin
+                    case 3 -> reservationNumberPrefix = "O"; // House
+                    default -> {
+                        System.out.println("Invalid reservation type.");
+                        return;
+                    }
+                }
+
+                // Generate a random 10-digit reservation number suffix
+                Random random = new Random();
+                String reservationNumberSuffix = String.format("%08d", random.nextInt(100000000));
+                String reservationNumber = reservationNumberPrefix + reservationNumberSuffix;
 
                 Reservation reservation;
                 switch (reservationType) {
@@ -260,6 +307,7 @@ public class Main {
             System.out.println("Account not found.");
         }
     }
+
     private static void updateAccount() {
         System.out.println("========== Update Account ==========");
         System.out.print("Enter account number: ");
@@ -297,7 +345,7 @@ public class Main {
             System.out.println("Account not found.");
         }
     }
-    
+
     private static void updateReservation() {
         System.out.println("========== Update Reservation ==========");
         System.out.print("Enter account number: ");
@@ -367,17 +415,44 @@ public class Main {
                             updatedReservation.calculatePrice(); // Calculate price for the updated reservation
                             updatedReservation.setStatus(ReservationStatus.COMPLETED); // Mark the reservation as completed
 
-                            // Update the existing reservation object in the account's reservations list
-                            manager.updateReservation(accountNumber, updatedReservation);
+                            // Generate new file name prefix based on reservation type
+                            String newFilePrefix = "";
+                            if (reservationType == 1) {
+                                newFilePrefix = "H";
+                            } else if (reservationType == 2) {
+                                newFilePrefix = "C";
+                            } else if (reservationType == 3) {
+                                newFilePrefix = "O";
+                            }
 
-                            // Save the updated reservation object to the file
-                            String reservationFilePath = "data/accounts/Acc-" + accountNumber + "/res-" + reservationNumber + ".txt";
+                            // Update the reservation number inside the reservation object to match the new file name format
+                            String newReservationNumber = newFilePrefix + reservationNumber;
+                            updatedReservation.setReservationNumber(newReservationNumber);
+
+                            // Get the old file name and construct the new file name
+                            String oldFileName = "data/accounts/Acc-" + accountNumber + "/res-" + reservationNumber + ".txt";
+                            String newFileName = "data/accounts/Acc-" + accountNumber + "/res-" + newReservationNumber + ".txt";
+
+                            // Rename the old file to the new file name
                             try {
-                                Files.write(Path.of(reservationFilePath), updatedReservation.toString().getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-                                System.out.println("Reservation updated successfully and marked as completed.");
-                                System.out.println(updatedReservation);
+                                Path oldFilePath = Paths.get(oldFileName);
+                                Path newFilePath = Paths.get(newFileName);
+                                Files.move(oldFilePath, newFilePath, StandardCopyOption.REPLACE_EXISTING);
+
+                                // Update the existing reservation object in the account's reservations list
+                                manager.updateReservation(accountNumber, updatedReservation);
+
+                                // Save the updated reservation object to the file
+                                try {
+                                    String reservationFilePath = "data/accounts/Acc-" + accountNumber + "/res-" + newReservationNumber + ".txt";
+                                    Files.write(Path.of(reservationFilePath), updatedReservation.toString().getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+                                    System.out.println("Reservation updated successfully and marked as completed.");
+                                    System.out.println(updatedReservation);
+                                } catch (IOException e) {
+                                    System.out.println("Failed to update reservation: " + e.getMessage());
+                                }
                             } catch (IOException e) {
-                                System.out.println("Failed to update reservation: " + e.getMessage());
+                                System.out.println("Failed to rename file: " + e.getMessage());
                             }
                         } else {
                             System.out.println("Invalid reservation type.");

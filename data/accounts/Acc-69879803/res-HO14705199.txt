@@ -1,0 +1,13 @@
+Account Number: 69879803
+Reservation Number: H4705199
+Physical Address: UpdatedReservation
+Mailing Address: UpdatedReservation2
+Start Date: Tue Oct 31 00:00:00 EDT 2023
+Number of Nights: 2
+Number of Beds: 3
+Number of Bedrooms: 4
+Number of Bathrooms: 5
+Lodging Size: 3456
+Price: $195.0
+Status: COMPLETED
+Kitchenette: true

@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 public class Manager {
     private final List<Account> accounts;
-    private static final String ACCOUNTS_DIRECTORY = "data/accounts";
+    static final String ACCOUNTS_DIRECTORY = "data/accounts";
 
     // Constructor
     public Manager() {
@@ -289,5 +289,12 @@ public class Manager {
             }
         }
         System.out.println("Reservation not found.");
+    }
+    public List<Reservation> getAllReservationsForAccount(String accountNumber) {
+        Account account = getAccount(accountNumber);
+        if (account != null) {
+            return account.getReservations();
+        }
+        return new ArrayList<>(); // Return an empty list if the account is not found
     }
 }
