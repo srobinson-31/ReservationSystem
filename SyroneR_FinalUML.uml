@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.apache.maven.archetypes</OriginalElement>
+  <nodes>
+    <node x="1101.5250629001273" y="552.6905795854238">org.apache.maven.archetypes.CabinReservation</node>
+    <node x="1605.8310377373805" y="940.0401984687601">org.apache.maven.archetypes.Main</node>
+    <node x="159.5420437400981" y="1203.5573985049184">org.apache.maven.archetypes.IllegalLoadException</node>
+    <node x="325.48933755974974" y="538.0230331849098">org.apache.maven.archetypes.DuplicateObjectException</node>
+    <node x="708.3875740093955" y="883.1794375417705">org.apache.maven.archetypes.IllegalOperationException</node>
+    <node x="1533.3310757261024" y="614.039115550278">org.apache.maven.archetypes.HotelReservation</node>
+    <node x="-124.15289651469917" y="570.4397363983132">org.apache.maven.archetypes.Account</node>
+    <node x="286.14502128774234" y="279.79399183791077">org.apache.maven.archetypes.ReservationStatus</node>
+    <node x="675.3203550188264" y="159.17350523720017">org.apache.maven.archetypes.Reservation</node>
+    <node x="217.14502128774228" y="671.0892393819752">org.apache.maven.archetypes.Manager</node>
+    <node x="1101.4956887499104" y="867.5878016441739">org.apache.maven.archetypes.HouseReservation</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.apache.maven.archetypes.Manager" target="org.apache.maven.archetypes.HouseReservation" relationship="CREATE">
+      <point x="198.9999787122577" y="-2.3938197512052284E-4" />
+      <point x="655.777" y="907.089" />
+      <point x="655.777" y="1067.0" />
+      <point x="1284.995869598631" y="1067.0" />
+      <point x="1.8084872067447577E-4" y="81.00041216090165" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Main" target="org.apache.maven.archetypes.Account" relationship="CREATE">
+      <point x="-3.7737380580438185E-5" y="-152.49979930203574" />
+      <point x="1747.831" y="1160.589" />
+      <point x="187.0" y="1160.589" />
+      <point x="187.0" y="747.44" />
+      <point x="140.49989651469917" y="2.6360168675410023E-4" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Main" target="org.apache.maven.archetypes.HotelReservation" relationship="CREATE">
+      <point x="-15.00003773738058" y="-152.49979930203574" />
+      <point x="1732.831" y="1020.0" />
+      <point x="14.999924273897477" y="67.99988444972195" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Manager" target="org.apache.maven.archetypes.DuplicateObjectException" relationship="CREATE">
+      <point x="34.84431627200746" y="-236.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Account" target="org.apache.maven.archetypes.Reservation" relationship="TO_MANY">
+      <point x="0.0" y="-177.0" />
+      <point x="16.347103485300835" y="456.1735052372002" />
+      <point x="-183.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Manager" target="org.apache.maven.archetypes.HotelReservation" relationship="CREATE">
+      <point x="198.9999787122577" y="14.99976061802488" />
+      <point x="640.777" y="922.089" />
+      <point x="640.777" y="1020.0" />
+      <point x="1732.831" y="1020.0" />
+      <point x="14.999924273897477" y="67.99988444972195" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Manager" target="org.apache.maven.archetypes.Account" relationship="CREATE">
+      <point x="-199.00002128774227" y="-2.3938197512052284E-4" />
+      <point x="187.0" y="907.089" />
+      <point x="187.0" y="747.44" />
+      <point x="140.49989651469917" y="2.6360168675410023E-4" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Manager" target="org.apache.maven.archetypes.CabinReservation" relationship="CREATE">
+      <point x="198.9999787122577" y="-93.58923938197518" />
+      <point x="858.32" y="813.5" />
+      <point x="858.32" y="833.0" />
+      <point x="1058.8200000000002" y="833.0" />
+      <point x="1058.8200000000002" y="633.691" />
+      <point x="-185.5000629001272" y="4.20414576069561E-4" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Main" target="org.apache.maven.archetypes.CabinReservation" relationship="CREATE">
+      <point x="14.99996226261942" y="-152.49979930203574" />
+      <point x="1762.831" y="833.0" />
+      <point x="1058.8200000000002" y="833.0" />
+      <point x="1058.8200000000002" y="633.6909999999999" />
+      <point x="-185.5000629001272" y="4.20414576069561E-4" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Manager" target="org.apache.maven.archetypes.Account" relationship="TO_MANY">
+      <point x="-199.0" y="-174.64923938197518" />
+      <point x="140.5" y="-14.999736398313246" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.HouseReservation" target="org.apache.maven.archetypes.Reservation" relationship="GENERALIZATION">
+      <point x="1.8084872067447577E-4" y="-80.99958783909835" />
+      <point x="1284.995869598631" y="782.0" />
+      <point x="858.32" y="782.0" />
+      <point x="-3.550188263261589E-4" y="297.0004947627998" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Reservation" target="org.apache.maven.archetypes.ReservationStatus" relationship="TO_ONE">
+      <point x="-183.0" y="-120.37951339928941" />
+      <point x="130.0" y="0.0" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Main" target="org.apache.maven.archetypes.Manager" relationship="TO_ONE">
+      <point x="-48.132016449638286" y="-152.5" />
+      <point x="1699.6990212877422" y="1173.3535193420055" />
+      <point x="607.6450212877423" y="1173.3535193420055" />
+      <point x="191.50000000000006" y="236.0" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.HotelReservation" target="org.apache.maven.archetypes.Reservation" relationship="GENERALIZATION">
+      <point x="-7.572610252282175E-5" y="67.99988444972195" />
+      <point x="1717.831" y="782.0" />
+      <point x="858.32" y="782.0" />
+      <point x="-3.550188263261589E-4" y="297.0004947627998" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Main" target="org.apache.maven.archetypes.HouseReservation" relationship="CREATE">
+      <point x="29.99996226261942" y="-152.49979930203574" />
+      <point x="1777.831" y="1067.0" />
+      <point x="1284.995869598631" y="1067.0" />
+      <point x="1.8084872067447577E-4" y="81.00041216090165" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Manager" target="org.apache.maven.archetypes.IllegalOperationException" relationship="CREATE">
+      <point x="199.00000000000006" y="-15.00023938197512" />
+      <point x="-128.0" y="-22.590437541770484" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.Main" target="org.apache.maven.archetypes.Manager" relationship="CREATE">
+      <point x="-63.132016449638286" y="-152.5" />
+      <point x="1684.6990212877422" y="1173.3535193420055" />
+      <point x="592.6450212877423" y="1173.3535193420055" />
+      <point x="176.50000000000006" y="236.0" />
+    </edge>
+    <edge source="org.apache.maven.archetypes.CabinReservation" target="org.apache.maven.archetypes.Reservation" relationship="GENERALIZATION">
+      <point x="-6.290012720455707E-5" y="81.00042041457607" />
+      <point x="1287.025" y="782.0" />
+      <point x="858.32" y="782.0" />
+      <point x="-3.550188263261589E-4" y="297.0004947627998" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5219187267071538" showDependencies="true" x="940.0004970334226" y="708.7783946168463" />
+  <SelectedNodes>
+    <node>org.apache.maven.archetypes.ReservationStatus</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
