@@ -18,13 +18,27 @@
  * prices and totals.
  *
  * Classes and Functionalities:
- * 1. Manager: Responsible for loading and managing account and reservation data.
- * 2. Account: Represents an account with associated information.
- * 3. Reservation: Represents an accommodation reservation with various details.
- * 4. IllegalLoadException: Custom unchecked exception for loading data.
- * 5. DuplicateObjectException: Custom unchecked exception for duplicate objects.
- * 6. IllegalOperationException: Custom unchecked exception for invalid operations.
- * 7. TestManager: Test class with test cases to verify system functionality.
+ * 1. `Manager`: Responsible for loading and managing account and reservation data.
+ * 2. `Account`: Represents an account with associated information.
+ * 3. `Reservation`: Represents an accommodation reservation with various details.
+ * 4. `Main`: serves as the entry point for the program.
+   -  The Main class interacts with the user through the console to receive commands and input.
+ * 5. HotelReservation, HotelReservation, and CabinReservation:
+   - Each specific reservation class represents a particular type of lodging reservation (cabin, hotel, house).
+   - They inherit from the “Reservation” class and provide additional attributes and methods specific to their respective 
+     types of reservations.
+ * 6.`ReservationStatus` : The `ReservationStatus` enumeration defines the possible statuses that a reservation can have.
+      - Each reservation can be in one of the following states:
+        - `DRAFT`: Represents a reservation that is in the process of being created or modified.
+        - `COMPLETED`: Represents a reservation that has been successfully completed.
+        - `CANCELLED`: Represents a reservation that has been cancelled.
+    This enumeration is used to provide clear and consistent representation of the reservation's current status throughout the application. It is particularly useful when performing operations that involve changing or checking the status of a reservation.
+ * 7. `IllegalLoadException`: Custom unchecked exception for loading data.
+ * 8. `DuplicateObjectException`: Custom unchecked exception for duplicate objects.
+ * 9. `IllegalOperationException`: Custom unchecked exception for invalid operations.
+ * 10. `reservationTest`: Test class with test cases to verify system functionality.
+ *
+ *
  *
  * Functionalities:
  * - Loading existing accounts and reservations from files
@@ -45,7 +59,7 @@
  * - The system is designed with careful consideration of required functionality and constraints.
  *
  * Test Class:
- * The project includes a TestManager class with main() method and various test case methods.
+ * The project includes a reservationTest class with main() method and various test case methods.
  * Each test case method verifies different aspects of the system's functionality and handles
  * exceptions, data loading, and manipulation. The test class ensures the correct operation of
  * the designed classes and methods.
